@@ -1,9 +1,13 @@
+# My *E. mexicana* genome assembly
+
 The published *Eufriesea mexicana* genome assembly is embarrassing.
 The only information they provided was that they used SOAPdenovo.
 This is me unable to contain my curiosity: is this a tough genome, or was the assembly just *that bad*?
 
 
-## Software prerequisites
+## Pre-processing
+
+### Software prerequisites
 - java
 - trimmomatic
 - bwa
@@ -12,7 +16,7 @@ This is me unable to contain my curiosity: is this a tough genome, or was the as
 - fastqc
 
 
-## Data retrieval
+### Data retrieval
 
 ```bash
 # Data retrieval
@@ -21,7 +25,7 @@ This is me unable to contain my curiosity: is this a tough genome, or was the as
 ```
 
 
-## Empirical insert size estimation
+### Empirical insert size estimation
 
 ```bash
 ./run-map.sh
@@ -31,14 +35,15 @@ This is me unable to contain my curiosity: is this a tough genome, or was the as
 Information about the mean/median and standard deviation of insert sizes for each sample (in `samples.csv`) was collected by manual examination of the `aligments/*-metrics.txt` and `alignments/*.pdf` files.
 
 
-## QC: before trimming
+### QC: before trimming
 ```bash
 fastqc --threads 18 SRR19450??_?.fastq.gz
 mkdir -p qc/before-trimming/
 mv *_fastqc*html *_fastqc*zip qc/before-trimming/
 ```
 
-## Adapter and quality trimming
+
+### Adapter and quality trimming
 ```bash
 ./run-trim.sh /usr/local/src/Trimmomatic-0.33/trimmomatic-0.33.jar
 
@@ -48,7 +53,11 @@ mkdir -p qc/after-trimming/
 mv *_fastqc*html *_fastqc*zip qc/after-trimming/
 ```
 
-## Three-pass digital normalization
+
+### Three-pass digital normalization
 ```
 ./diginorm.sh
 ```
+
+
+## Assembly
