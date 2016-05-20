@@ -4,8 +4,6 @@ set -eo pipefail
 which bwa
 which samtools
 
-mkdir -p alignments
-
 for i in {1945063..1945071}
 do
     accession=SRR${i}

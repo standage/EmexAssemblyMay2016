@@ -3,9 +3,7 @@ The only information they provided was that they used SOAPdenovo.
 This is me unable to contain my curiosity: is this a tough genome, or was the assembly just *that bad*?
 
 
-## Pre-processing
-
-Software prerequisites
+## Software prerequisites
 - java
 - trimmomatic
 - bwa
@@ -13,12 +11,28 @@ Software prerequisites
 - picard tools
 - fastqc
 
+
+## Data retrieval
+
 ```bash
 # Data retrieval
 ./download-genome.sh
 ./download-reads.sh
+```
 
-# QC: before trimming
+
+## Empirical insert size estimation
+
+```bash
+./run-map.sh
+./run-metrics.sh /usr/local/src/picard-tools-1.66/CollectInsertSizeMetrics.jar
+```
+
+Information about the mean/median and standard deviation of insert sizes for each sample (in `samples.csv`) was collected by manual examination of the `aligments/*-metrics.txt` and `alignments/*.pdf` files.
+
+
+## QC: before trimming
+```bash
 fastqc --threads 18 SRR19450??_?.fastq.gz
 mkdir -p qc/before-trimming/
 mv *_fastqc*html *_fastqc*zip qc/before-trimming/
