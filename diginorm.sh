@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 set -eo pipefail
 
-accession=$1
+threads=32
 k=21
 c1=20
 c2=10
@@ -29,7 +29,7 @@ wait
 for i in {63..71}
 do
     accession=SRR19450${i}
-    filter-abund.py --threads=16 --cutoff=1 --output=- ${accession}.counts ${accession}-dn1.fq.gz \
+    filter-abund.py --threads=$threads --cutoff=1 --output=- ${accession}.counts ${accession}-dn1.fq.gz \
         | extract-paired-reads.py --output-single=${accession}-se.fq --output-paired=- - \
         | normalize-by-median.py $diginormargs --cutoff=$c2 --output=${accession}-dn2.fq.gz - \
         > ${accession}-diginorm2.log 2>&1

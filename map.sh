@@ -8,4 +8,4 @@ out=$4
 
 bwa mem -t $threads Emex.gdna.long.fa $one $two \
     | samtools view -bS - \
-    | samtools sort -m 10G -o $out -@ $3 -O BAM
+    | samtools sort -m 10G -o $out -@ $threads -O BAM
