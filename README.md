@@ -14,6 +14,15 @@ This is me unable to contain my curiosity: is this a tough genome, or was the as
 - samtools 1.3
 - picard tools
 - fastqc
+- khmer
+
+Use a virtualenv for khmer.
+
+```bash
+virtualenv kenv
+source kenv/bin/activate  # Run this every time you open a shell window
+pip install khmer
+```
 
 
 ### Data retrieval
