@@ -36,15 +36,19 @@ Information about the mean/median and standard deviation of insert sizes for eac
 fastqc --threads 18 SRR19450??_?.fastq.gz
 mkdir -p qc/before-trimming/
 mv *_fastqc*html *_fastqc*zip qc/before-trimming/
+```
 
-# Adapter and quality trimming
+## Adapter and quality trimming
+```bash
 ./run-trim.sh /usr/local/src/Trimmomatic-0.33/trimmomatic-0.33.jar
 
 # QC: after trimming
 fastqc --threads 18 SRR19450??-trim_?.fq.gz
 mkdir -p qc/after-trimming/
 mv *_fastqc*html *_fastqc*zip qc/after-trimming/
+```
 
-# Three-pass digital normalization
+## Three-pass digital normalization
+```
 ./diginorm.sh
 ```
